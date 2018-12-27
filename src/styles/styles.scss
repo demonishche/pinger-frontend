@@ -1,0 +1,128 @@
+@import "node_modules/normalize-scss/sass/normalize/import-now";
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,500,700');
+@import 'variables';
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: $mainBg;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.contentWrapper {
+  width: 100%;
+}
+
+.title {
+  color: $fontLight;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+
+  &--size-lg {
+    font-size: 40px;
+  }
+
+  &--size-m {
+    font-size: 30px;
+  }
+
+  &--size-s {
+    font-size: 20px;
+  }
+}
+
+.regularText {
+  color: $fontLight;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  
+  &--size-s {
+    font-size: 14px;
+  }
+
+  &--size-l {
+    font-size: 24px;
+  }
+}
+
+button.btn {
+  background-color: transparent;
+  color: $fontLight;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  border: 1px solid $borderNormal;
+  padding: 8px 16px;
+  font-size: 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 500;
+  transition: all .2s ease;
+
+  &:hover:not(:disabled) {
+    border-color: $borderSelected;
+    background-color: $borderNormal;
+  }
+
+  &:disabled {
+    cursor: wait;
+    color: rgba(227, 244, 255, 0.3);
+  }
+}
+
+.input {
+  width: 100%;
+  background: $mainBg;
+  outline: none;
+  border: 1px solid $borderNormal;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-family: 'Roboto', sans-serif;
+  color: $fontLight;
+  font-size: 20px;
+  transition: all .2s ease;
+  box-sizing: border-box;
+
+  &:active, &:focus {
+    border-color: $borderSelected;
+  }
+
+  &--errored {
+    border-color: $errorColor;
+  }
+}
+
+label.inputLabel {
+  color: #e3f4ff;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  margin-bottom: 4px;
+  display: block;
+  cursor: pointer;
+}
+
+span.input__error {
+  font-family: 'Roboto', sans-serif;
+  color: $errorColor;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}

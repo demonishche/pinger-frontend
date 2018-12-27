@@ -1,0 +1,31 @@
+<div class='contentWrapper'>
+  <header class='header'>
+    <p class='title title--logo'>Pinger</p>
+    <div class='userInfo'>
+      <p class='regularText username'>Hi, {{username}}!</p>
+      <div class='logout'>
+        <i class="logout__icon fas fa-sign-out-alt"></i>
+      </div>
+    </div>
+  </header>
+  <div class='pageRow'>
+    <div class='leftColumn'>
+      <div class='pingersList'>
+        <div *ngFor='let pinger of pingers' class='pinger' [title]='"Link: " + pinger.url'>
+          <p class='title title--size-s pinger__title'>{{pinger.name}}</p>
+          <div class='pinger__urlBlock'>
+            <p class='regularText regularText--size-s pinger__urlText'>{{pinger.url}}</p>
+            <a class='pinger__url' href='{{pinger.url}}' target='_blank'>
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='rightColumn'>
+      <div class='rightColumn__content contentWrapper'>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

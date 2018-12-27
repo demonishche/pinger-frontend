@@ -1,0 +1,98 @@
+@import 'src/styles/variables';
+
+.contentWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  background-color: $panelBg;
+  height: 80px;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  margin-left: 15px;
+  cursor: pointer;
+
+  .logout__icon {
+    color: $borderNormal;
+    font-size: 25px;
+    transition: all .2s ease;
+  }
+
+  &:hover {
+    .logout__icon {
+      color: $borderSelected;
+    }
+  }
+}
+
+.title--logo {
+  color: rgba(227, 244, 255, 0.9);
+  font-size: 40px;
+  letter-spacing: 8px;
+}
+
+.pageRow {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.leftColumn {
+  width: 320px;
+  border-right: 1px solid $panelBg;
+  box-shadow: 3px 0 20px 0px #000;
+  background-color: $mainBg;
+}
+
+.rightColumn {
+  flex: 1;
+}
+
+.pinger {
+  border-bottom: 1px solid rgba(52, 32, 86, 0.5);
+  padding: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover {
+    background: rgba(52, 32, 86, 0.2);
+  }
+}
+
+.pinger__urlBlock {
+  display: flex;
+  align-items: center;
+}
+
+.pinger__urlText {
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.pinger__url {
+  margin-left: 4px;
+}
+
+.rightColumn__content {
+  padding: 40px;
+  box-sizing: border-box;
+}

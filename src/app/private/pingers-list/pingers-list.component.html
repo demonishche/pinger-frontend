@@ -1,0 +1,66 @@
+<div class='content'>
+  <div class='actionsBar'>
+    <button class='btn' (click)='showNewWebsiteModal()'>Add new website</button>
+    <i (click)='refreshData()' class="refreshIcon fas fa-sync-alt"></i>
+  </div>
+  <div class='pingersList'>
+    <table class='pingerTable'>
+      <thead>
+        <tr>
+          <th class='pingerStatus--header'></th>
+          <th class='title title--size-s'>Website</th>
+          <th class='title title--size-s'>Up %</th>
+          <th class='title title--size-s'>Down %</th>
+          <th class='title title--size-s'>Up time</th>
+          <th class='title title--size-s'>Avg response time (ms)</th>
+          <th class='title title--size-s'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let pinger of pingers'>
+          <td class='pingerStatus' [class.pingerStatus--up]='pinger.status === 1' [class.pingerStatus--down]='pinger.status === 2'>
+          </td>
+          <td>
+            <p class='title title--size-s'>{{pinger.name}}</p>
+            <div class='pinger__urlBlock'>
+              <p class='regularText regularText--size-s pinger__urlText'>{{pinger.url}}</p>
+              <a class='pinger__url' href='{{pinger.url}}' target='_blank'>
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </td>
+          <td class='regularText regularText--size-lg upPercent__value statisticValue'>
+            {{pinger.up_percent}}
+          </td>
+          <td class='regularText regularText--size-lg downPercent__value statisticValue'>
+            {{pinger.down_percent}}
+          </td>
+          <td class='regularText regularText--size-lg statisticValue'>
+            {{pinger.status === 1 ? pinger.up_period : '---'}}
+          </td>
+          <td class='regularText regularText--size-lg statisticValue'>
+            {{pinger.avg_time}}
+          </td>
+          <td>
+            <i *ngIf='pinger.status === 3' (click)='startPinger(pinger.id)' class="actionIcon startPinger fas fa-play"></i>
+            <i *ngIf='pinger.status !== 3' (click)='pausePinger(pinger.id)' class="actionIcon pausePinger fas fa-pause"></i>
+            <i (click)='editPinger(pinger.id)' class="actionIcon editPinger far fa-edit"></i>
+            <i (click)='removePinger(pinger.id)' class="actionIcon removePinger far fa-trash-alt"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class='modalContainer' [class.modalContainer--visible]='newWebsiteModalVisibility' (click)='closeNewWebsiteModal($event)'>
+  <div class='modalPanel newWebsite__modal'>
+    <i class="modalClose__icon fas fa-times" (click)='closeNewWebsiteModal($event, true)'></i>
+    <app-new-website></app-new-website>
+  </div>
+</div>
+<div class='modalContainer' [class.modalContainer--visible]='removeWebsiteModalVisibility' (click)='closeRemoveWebsiteModal($event)'>
+  <div class='modalPanel removeWebsite__modal'>
+    <i class="modalClose__icon fas fa-times" (click)='closeRemoveWebsiteModal($event, true)'></i>
+    <app-remove-website #removeWebsiteForm></app-remove-website>
+  </div>
+</div>

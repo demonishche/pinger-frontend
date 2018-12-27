@@ -1,0 +1,160 @@
+@import 'src/styles/variables';
+
+.modalContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(14, 6, 15, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: all .3s ease;
+
+  &--visible {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 9;
+  }
+}
+
+.modalPanel {
+  position: relative;
+  background-color: $panelBg;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.modalClose__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: $borderNormal;
+  transition: all .2s ease;
+
+  &:hover {
+    color: $borderSelected;
+  }
+}
+
+.newWebsite__modal {
+  max-width: 400px;
+  width: 100%;
+}
+
+.pingersList {
+  // border-top: 1px solid rgba(52, 32, 86, 0.5);
+  margin-top: 30px;
+}
+
+.pingerTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th.title {
+    text-align: left;
+    font-weight: 500;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(52, 32, 86, 0.5);
+    padding-bottom: 5px;
+  }
+
+  td {
+    padding-left: 10px;
+    height: 60px;
+    border-bottom: 1px solid rgba(52, 32, 86, 0.5);
+  }
+
+  .pingerStatus--header {
+    padding-left: 0;
+  }
+
+  .pingerStatus {
+    width: 5px;
+    max-width: 5px;
+    background: #4e4e4e;
+    padding-left: 0;
+
+    &--up {
+      background: $green;
+    }
+
+    &--down {
+      background: $red;
+    }
+  }
+
+  .statisticValue {
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  .upPercent__value {
+    color: $green;
+  }
+
+  .downPercent__value {
+    color: $red;
+  }
+
+  .actionIcon {
+    color: $borderNormal;
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+
+  .editPinger:hover,
+  .pausePinger:hover,
+  .startPinger:hover {
+    color: $borderSelected;
+  }
+
+  .removePinger,
+  .editPinger {
+    margin-left: 5px;
+  }
+
+  .removePinger:hover {
+    color: $red;
+  }
+}
+
+.refreshIcon {
+  color: $borderNormal;
+  font-size: 30px;
+  padding: 5px;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover {
+    color: $borderSelected;
+  }
+}
+
+.pinger__urlBlock {
+  display: flex;
+  align-items: center;
+}
+
+.pinger__urlText {
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pinger__url {
+  margin-left: 4px;
+}

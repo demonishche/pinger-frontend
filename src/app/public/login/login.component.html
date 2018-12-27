@@ -1,0 +1,42 @@
+<div class='container'>
+  <div class='contentWrapper'>
+    <div class='publicHeader'>
+      <h1 class='title publicHeader__title'>Pinger</h1>
+    </div>
+    <div class='formBlock__container container'>
+      <div class='formBlock'>
+        <h2 class='title title--size-lg'>Login form</h2>
+        <app-form [form]='loginForm' [fields]='fields' [globalErrors]='globalErrors' [errorMessages]='errorMessages'
+          #loginFormComponent>
+          <form [formGroup]="loginForm" novalidate (ngSubmit)='submit()'>
+            <div class='inputBlock'>
+              <label class='inputLabel' for='username'>Username:</label>
+              <input type='text' id='username' name='username' class='input' formControlName='username' maxlength='255'
+                [class.input--errored]='loginForm.controls.username.invalid && loginForm.controls.username.dirty && !!errorMessages.username'>
+              <span *ngIf="loginForm.controls.username.invalid && loginForm.controls.username.dirty && !!errorMessages.username"
+                class='input__error'>
+                {{errorMessages.username}}
+              </span>
+            </div>
+            <div class='inputBlock'>
+              <label class='inputLabel' for='password'>Password:</label>
+              <input type='password' id='password' name='password' class='input' formControlName='password' maxlength='255'
+                [class.input--errored]='loginForm.controls.password.invalid && loginForm.controls.password.dirty && !!errorMessages.password'>
+              <span *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.dirty && !!errorMessages.password"
+                class='input__error'>
+                {{errorMessages.password}}
+              </span>
+            </div>
+            <span *ngIf="formState === 4" class='input__error'>
+              Wrong username or password.
+            </span>
+            <button class='btn btn__submit' type='submit' [disabled]='formState === 1'>Submit</button>
+            <span *ngIf="formState === 3" class='input__error'>
+              There is conection error. Please try again a bit later.
+            </span>
+          </form>
+        </app-form>
+      </div>
+    </div>
+  </div>
+</div>

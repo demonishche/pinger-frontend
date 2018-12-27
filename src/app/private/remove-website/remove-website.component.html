@@ -1,0 +1,24 @@
+<div class='newWebsite__block'>
+    <p class='title title--size-m'>Removing website</p>
+    <p class='regularText regularText--size-s' *ngIf="formState !== 2">To remove website please enter into field "{{name}}"</p>
+    <p class='regularText regularText--size-l regularText__success' *ngIf="formState === 2">Website successfully removed!</p>
+    <app-form *ngIf="formState !== 2" [form]='removeWebsiteForm' [fields]='fields' [globalErrors]='globalErrors' [errorMessages]='errorMessages'
+      #removeWebsiteFormComponent>
+      <form class='removeWebsiteForm' [formGroup]="removeWebsiteForm" novalidate (ngSubmit)='submit()'>
+        <div class='inputBlock'>
+          <label class='inputLabel' for='websiteName'>Website name:</label>
+          <input type='text' id='websiteName' name='websiteName' class='input' formControlName='websiteName' maxlength='255'
+            [class.input--errored]='removeWebsiteForm.controls.websiteName.invalid && removeWebsiteForm.controls.websiteName.dirty && !!errorMessages.websiteName'>
+          <span *ngIf="removeWebsiteForm.controls.websiteName.invalid && removeWebsiteForm.controls.websiteName.dirty && !!errorMessages.websiteName"
+            class='input__error'>
+            {{errorMessages.websiteName}}
+          </span>
+        </div>
+        <button class='btn btn__submit' type='submit' [disabled]='formState === 1'>Remove</button>
+        <span *ngIf="formState === 3" class='input__error'>
+            There is conection error. Please try again a bit later.
+        </span>
+      </form>
+    </app-form>
+  </div>
+  

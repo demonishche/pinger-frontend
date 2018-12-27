@@ -1,0 +1,31 @@
+<div class='newWebsite__block'>
+  <p class='title title--size-m'>Adding new website</p>
+  <p class='regularText regularText--size-l regularText__success' *ngIf="formState === 2">New website successfully added!</p>
+  <app-form *ngIf="formState !== 2" [form]='newWebsiteForm' [fields]='fields' [globalErrors]='globalErrors' [errorMessages]='errorMessages'
+    #newWebsiteFormComponent>
+    <form class='newWebsiteForm' [formGroup]="newWebsiteForm" novalidate (ngSubmit)='submit()'>
+      <div class='inputBlock'>
+        <label class='inputLabel' for='websiteName'>Website name:</label>
+        <input type='text' id='websiteName' name='websiteName' class='input' formControlName='websiteName' maxlength='255'
+          [class.input--errored]='newWebsiteForm.controls.websiteName.invalid && newWebsiteForm.controls.websiteName.dirty && !!errorMessages.websiteName'>
+        <span *ngIf="newWebsiteForm.controls.websiteName.invalid && newWebsiteForm.controls.websiteName.dirty && !!errorMessages.websiteName"
+          class='input__error'>
+          {{errorMessages.websiteName}}
+        </span>
+      </div>
+      <div class='inputBlock'>
+        <label class='inputLabel' for='pingerUrl'>Website url:</label>
+        <input type='text' id='pingerUrl' name='pingerUrl' class='input' formControlName='pingerUrl' maxlength='255'
+          [class.input--errored]='newWebsiteForm.controls.pingerUrl.invalid && newWebsiteForm.controls.pingerUrl.dirty && !!errorMessages.pingerUrl'>
+        <span *ngIf="newWebsiteForm.controls.pingerUrl.invalid && newWebsiteForm.controls.pingerUrl.dirty && !!errorMessages.pingerUrl"
+          class='input__error'>
+          {{errorMessages.pingerUrl}}
+        </span>
+      </div>
+      <button class='btn btn__submit' type='submit' [disabled]='formState === 1'>Add website</button>
+      <span *ngIf="formState === 3" class='input__error'>
+          There is conection error. Please try again a bit later.
+      </span>
+    </form>
+  </app-form>
+</div>
