@@ -8,6 +8,6 @@ importScripts('./ngsw-worker.js');
     event.notification.close();
     console.log('event', event);
     if (event.action === 'see-more')
-      self.clients.openWindow('http://localhost:8001' + event.notification.data.url);
+      self.clients.openWindow('https://demonishche.github.io/pinger-frontend/' + event.notification.data.url);
   });
 }());
