@@ -1,0 +1,31 @@
+<div class='newProject__block'>
+  <p class='title title--size-m'>Adding new project</p>
+  <p class='regularText regularText--size-l regularText__success' *ngIf="formState === 2">New project successfully added!</p>
+  <app-form *ngIf="formState !== 2" [form]='newProjectForm' [fields]='fields' [globalErrors]='globalErrors' [errorMessages]='errorMessages'
+    #newProjectFormComponent>
+    <form class='newProjectForm' [formGroup]="newProjectForm" novalidate (ngSubmit)='submit()'>
+      <div class='inputBlock'>
+        <label class='inputLabel' for='projectName'>Project name:</label>
+        <input type='text' id='projectName' name='projectName' class='input' formControlName='projectName' maxlength='255'
+          [class.input--errored]='newProjectForm.controls.projectName.invalid && newProjectForm.controls.projectName.dirty && !!errorMessages.projectName'>
+        <span *ngIf="newProjectForm.controls.projectName.invalid && newProjectForm.controls.projectName.dirty && !!errorMessages.projectName"
+          class='input__error'>
+          {{errorMessages.projectName}}
+        </span>
+      </div>
+      <div class='inputBlock'>
+        <label class='inputLabel' for='projectOrigin'>Project origin(url):</label>
+        <input type='text' id='projectOrigin' name='projectOrigin' class='input' formControlName='projectOrigin' maxlength='255'
+          [class.input--errored]='newProjectForm.controls.projectOrigin.invalid && newProjectForm.controls.projectOrigin.dirty && !!errorMessages.projectOrigin'>
+        <span *ngIf="newProjectForm.controls.projectOrigin.invalid && newProjectForm.controls.projectOrigin.dirty && !!errorMessages.projectOrigin"
+          class='input__error'>
+          {{errorMessages.projectOrigin}}
+        </span>
+      </div>
+      <button class='btn btn__submit' type='submit' [disabled]='formState === 1'>Add project</button>
+      <span *ngIf="formState === 3" class='input__error'>
+          There is conection error. Please try again a bit later.
+      </span>
+    </form>
+  </app-form>
+</div>

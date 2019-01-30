@@ -1,0 +1,73 @@
+<div class='content'>
+  <div class='actionsBar'>
+    <button class='btn' (click)='showNewProjectModal()'>New project</button>
+    <!-- <i (click)='refreshData()' class="refreshIcon fas fa-sync-alt"></i> -->
+  </div>
+  <div class='projectsList'>
+    <table class='projectsTable table'>
+      <thead>
+        <tr>
+          <th class='title title--size-s title__cell'>Website</th>
+          <th class='title title--size-s'>Pages Count</th>
+          <th class='title title--size-s'>Pages Up</th>
+          <th class='title title--size-s'>Pages Down</th>
+          <th class='title title--size-s'>Pages Paused</th>
+          <th class='title title--size-s'>Avg response time (ms)</th>
+          <th class='title title--size-s'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let project of projects'>
+          <td class='title__cell'>
+            <p class='title title--size-s'>{{project.name}}</p>
+            <div class='project__url url'>
+              <p class='regularText regularText--size-s url__text'>{{project.origin}}</p>
+              <a class='url__link' href='{{project.origin}}' target='_blank'>
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </td>
+          <td class='regularText regularText--size-lg pagesCount__value statisticValue'>
+            {{project.count}}
+          </td>
+          <td class='regularText regularText--size-lg upCount__value statisticValue'>
+            {{project.active}}
+          </td>
+          <td class='regularText regularText--size-lg downCount__value statisticValue'>
+            {{project.down}}
+          </td>
+          <td class='regularText regularText--size-lg pausedCount__value statisticValue'>
+            {{project.paused}}
+          </td>
+          <td class='regularText regularText--size-lg statisticValue'>
+            {{project.avgTime}}
+          </td>
+          <td>
+            <!-- <i *ngIf='pinger.status === 3' (click)='startPinger(pinger.id)' class="actionIcon startPinger fas fa-play"></i>
+            <i *ngIf='pinger.status !== 3' (click)='pausePinger(pinger.id)' class="actionIcon pausePinger fas fa-pause"></i> -->
+            <i (click)='editProject(project.id, project.name, project.origin)' class="actionIcon editProject far fa-edit"></i>
+            <i (click)='removeProject(project.id, project.name)' class="actionIcon removeProject far fa-trash-alt"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class='modalContainer' [class.modalContainer--visible]='newProjectModalVisibility' (click)='closeNewProjectModal($event)'>
+  <div class='modalPanel newProject__modal'>
+    <i class="modalClose__icon fas fa-times" (click)='closeNewProjectModal($event, true)'></i>
+    <app-new-project></app-new-project>
+  </div>
+</div>
+<div class='modalContainer' [class.modalContainer--visible]='removeProjectModalVisibility' (click)='closeRemoveProjectModal($event)'>
+  <div class='modalPanel removeProject__modal'>
+    <i class="modalClose__icon fas fa-times" (click)='closeRemoveProjectModal($event, true)'></i>
+    <app-remove-project #removeProjectForm></app-remove-project>
+  </div>
+</div>
+<div class='modalContainer' [class.modalContainer--visible]='editProjectModalVisibility' (click)='closeEditProjectModal($event)'>
+  <div class='modalPanel editProject__modal'>
+    <i class="modalClose__icon fas fa-times" (click)='closeEditProjectModal($event, true)'></i>
+    <app-edit-project #editProjectForm></app-edit-project>
+  </div>
+</div>

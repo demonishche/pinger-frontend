@@ -1,0 +1,11 @@
+{
+  "apps": [{
+    "name": "pinger-frontend",
+    "script": "index.html",
+    "watch": true,
+    "cwd": "./dist/ping-app-frontend",
+    "env": {
+      "PORT": "8000"
+    }
+  }]
+}

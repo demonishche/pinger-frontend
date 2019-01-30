@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReplaySubject, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export const AUTH_TOKEN = 'Auth-token';
 
@@ -31,7 +32,7 @@ export class AuthService {
   public login(username: string, password: string) {
     this.authState.next(authState.SENDING);
     console.log(username)
-    this.http.post('http://localhost:8080/user/login', { username, password })
+    this.http.post(`${environment.origin}/user/login`, { username, password })
       .subscribe(
         data => {
           if (data['result'] === 'success') {
@@ -66,7 +67,7 @@ export class AuthService {
       return;
     }
 
-    this.http.post('http://localhost:8080/user/verifyAuth', { token: token })
+    this.http.post(`${environment.origin}/user/verifyAuth`, { token: token })
       .subscribe(
         data => {
           this.setToken(data['token']);

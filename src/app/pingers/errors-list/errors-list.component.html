@@ -1,0 +1,18 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th class='title title--size-s'>Error code</th>
+      <th class='title title--size-s'>Error message</th>
+      <th class='title title--size-s'>From</th>
+      <th class='title title--size-s'>To</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let error of pinger.down_list'>
+      <td class='regularText regularText--size-lg'>{{error.error}}</td>
+      <td class='regularText regularText--size-lg errorMessage'>{{!!error.message ? error.message : '-'}}</td>
+      <td class='regularText regularText--size-lg'>{{error.time_from | date :'short'}}</td>
+      <td class='regularText regularText--size-lg'>{{error.time_to | date :'short'}}</td>
+    </tr>
+  </tbody>
+</table>

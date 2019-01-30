@@ -1,0 +1,24 @@
+@import 'src/styles/variables';
+
+.breadcrumbs {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0 0 20px 0;
+  padding: 0;
+
+  &__link {
+    color: $borderNormal;
+    text-decoration: none;
+    transition: color .2s ease;
+
+    &:hover, &--active {
+      color: $borderSelected;
+    }
+  }
+
+  &__arrow {
+    color: $borderSelected;
+    margin: 0 8px;
+  }
+}

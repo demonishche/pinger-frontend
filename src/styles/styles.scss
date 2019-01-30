@@ -53,7 +53,7 @@ body {
   color: $fontLight;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
-  
+
   &--size-s {
     font-size: 14px;
   }
@@ -101,7 +101,8 @@ button.btn {
   transition: all .2s ease;
   box-sizing: border-box;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     border-color: $borderSelected;
   }
 
@@ -125,4 +126,93 @@ span.input__error {
   font-size: 14px;
   display: block;
   margin-top: 5px;
+}
+
+table.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th.title {
+    text-align: left;
+    font-weight: 500;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(52, 32, 86, 0.5);
+    padding-bottom: 5px;
+  }
+
+  td {
+    padding-left: 10px;
+    height: 60px;
+    border-bottom: 1px solid rgba(52, 32, 86, 0.5);
+  }
+
+  .url {
+    display: flex;
+    align-items: center;
+
+    .url__text {
+      margin-top: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .url__link {
+      margin-left: 4px;
+    }
+  }
+
+  .actionIcon {
+    color: $borderNormal;
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+}
+
+.modalContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(14, 6, 15, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: all .3s ease;
+
+  &--visible {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 9;
+  }
+}
+
+.modalPanel {
+  position: relative;
+  background-color: $panelBg;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.modalClose__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: $borderNormal;
+  transition: all .2s ease;
+
+  &:hover {
+    color: $borderSelected;
+  }
 }

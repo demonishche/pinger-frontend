@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  origin: 'http://192.168.0.47:8080',
+  vapid_public: 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEbPJXKWttsuVRPlp8fxCAp66OXCwu50G4oqzI5AXfVob8RW1/opLC9ReIUVdb/FTn7C6B8fT7bVNY/STKPU2HsQ=='
 };
 
 /*

@@ -1,0 +1,31 @@
+@import 'src/styles/variables';
+
+.projectsList {
+  margin-top: 30px;
+}
+
+.editProject:hover {
+  color: $borderSelected;
+}
+
+.removePinger {
+  margin-left: 5px;
+}
+
+.removeProject:hover {
+  color: $red;
+}
+
+// .projectsList {
+//   width: 100%;
+//   overflow-x: scroll;
+//   margin-left: 100px;
+  
+// }
+
+// .title__cell {
+//   position: absolute;
+//   width: 100px;
+//   left: 0;
+//   top: auto;
+// }

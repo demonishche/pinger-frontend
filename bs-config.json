@@ -1,0 +1,12 @@
+{
+  "port": 8001,
+  "files": [
+    "./dist/ping-app-frontend/**/*.{html,htm,css,js}"
+  ],
+  "server": {
+    "baseDir": "./dist/ping-app-frontend"
+  },
+  "ghostMode": false,
+  "reloadOnRestart": true,
+  "open": false
+}

@@ -53,17 +53,25 @@
 }
 
 .leftColumn {
-  width: 320px;
+  width: 300px;
   border-right: 1px solid $panelBg;
-  box-shadow: 3px 0 20px 0px #000;
+  box-shadow: 3px 0 20px 0px #000000;
   background-color: $mainBg;
+
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .rightColumn {
   flex: 1;
 }
 
-.pinger {
+.project__link {
+  text-decoration: none;
+}
+
+.project {
   border-bottom: 1px solid rgba(52, 32, 86, 0.5);
   padding: 10px;
   box-sizing: border-box;
@@ -75,12 +83,18 @@
   }
 }
 
-.pinger__urlBlock {
+.project__link--active {
+  .project {
+    background: rgba(52, 32, 86, 0.2);
+  }
+}
+
+.project__urlBlock {
   display: flex;
   align-items: center;
 }
 
-.pinger__urlText {
+.project__urlText {
   margin-top: 5px;
   white-space: nowrap;
   overflow: hidden;
@@ -88,11 +102,13 @@
   width: 100%;
 }
 
-.pinger__url {
+.project__url {
   margin-left: 4px;
 }
 
 .rightColumn__content {
   padding: 40px;
   box-sizing: border-box;
+  overflow: auto;
+  overflow-x: hidden;
 }

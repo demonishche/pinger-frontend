@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { newPingerState, PingersService } from 'src/app/services/pingers/pingers.service';
+import { requestState, PingersService } from 'src/app/services/pingers/pingers.service';
 
 @Component({
   selector: 'app-remove-website',
@@ -16,9 +16,10 @@ export class RemoveWebsiteComponent implements OnInit {
   ];
   public globalErrors = {};
   public errorMessages = { websiteName: '', pingerUrl: '' };
-  public formState: newPingerState = newPingerState.CREATING;
+  public formState: requestState = requestState.CREATING;
   private id: string = '';
   private name: string = '';
+  private project_id: string;
 
   constructor(
     private pingersService: PingersService
@@ -31,7 +32,7 @@ export class RemoveWebsiteComponent implements OnInit {
       this.formState = state.state;
 
       switch (state.state) {
-        case newPingerState.SUCCESS:
+        case requestState.SUCCESS:
           this.removeWebsiteForm.reset();
           break;
       }
@@ -44,13 +45,14 @@ export class RemoveWebsiteComponent implements OnInit {
       this.setFieldError('websiteName', 'notMatch')
     }
     if (this.removeWebsiteForm.valid) {
-      this.pingersService.removePinger(this.id);
+      this.pingersService.removePinger(this.project_id, this.id);
     }
   }
 
-  public setPingerInfo(_name, _id): void {
+  public setPingerInfo(_project_id, _name, _id): void {
     this.name = _name;
     this.id = _id;
+    this.project_id = _project_id;
   }
 
   private setFieldError(field, error) {

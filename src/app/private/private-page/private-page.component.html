@@ -4,26 +4,29 @@
     <div class='userInfo'>
       <p class='regularText username'>Hi, {{username}}!</p>
       <div class='logout'>
-        <i class="logout__icon fas fa-sign-out-alt"></i>
+        <i (click)='logout()' class="logout__icon fas fa-sign-out-alt"></i>
       </div>
     </div>
   </header>
   <div class='pageRow'>
     <div class='leftColumn'>
-      <div class='pingersList'>
-        <div *ngFor='let pinger of pingers' class='pinger' [title]='"Link: " + pinger.url'>
-          <p class='title title--size-s pinger__title'>{{pinger.name}}</p>
-          <div class='pinger__urlBlock'>
-            <p class='regularText regularText--size-s pinger__urlText'>{{pinger.url}}</p>
-            <a class='pinger__url' href='{{pinger.url}}' target='_blank'>
-              <i class="fas fa-external-link-alt"></i>
-            </a>
+      <div class='projectsList'>
+        <a class='project__link' *ngFor='let project of projects' routerLink='{{"/projects/" + project.short_id}}' routerLinkActive='project__link--active'>
+          <div class='project' >
+            <p class='title title--size-s project__title'>{{project.name}}</p>
+            <div class='project__urlBlock'>
+              <p class='regularText regularText--size-s project__urlText'>{{project.origin}}</p>
+              <!-- <a class='pinger__url' href='{{project.origin}}' target='_blank'>
+                <i class="fas fa-external-link-alt"></i>
+              </a> -->
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
     <div class='rightColumn'>
       <div class='rightColumn__content contentWrapper'>
+        <app-breadcrumbs></app-breadcrumbs>
         <router-outlet></router-outlet>
       </div>
     </div>

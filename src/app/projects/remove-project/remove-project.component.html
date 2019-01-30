@@ -1,0 +1,25 @@
+<div class='removeProject__block'>
+  <p class='title title--size-m'>Removing project</p>
+  <p class='regularText regularText--size-s regularText__description' *ngIf="formState !== 2">To remove project please enter into field
+    "{{name}}"</p>
+  <p class='regularText regularText--size-s regularText__description' *ngIf="formState !== 2">Note that all data about project and its pages <br /> will be removed permanently.</p>
+  <p class='regularText regularText--size-l regularText__success' *ngIf="formState === 2">Project successfully removed!</p>
+  <app-form *ngIf="formState !== 2" [form]='removeProjectForm' [fields]='fields' [globalErrors]='globalErrors'
+    [errorMessages]='errorMessages' #removeProjectFormComponent>
+    <form class='removeProjectForm' [formGroup]="removeProjectForm" novalidate (ngSubmit)='submit()'>
+      <div class='inputBlock'>
+        <label class='inputLabel' for='projectName'>Project name:</label>
+        <input type='text' id='projectName' name='projectName' class='input' formControlName='projectName' maxlength='255'
+          [class.input--errored]='removeProjectForm.controls.projectName.invalid && removeProjectForm.controls.projectName.dirty && !!errorMessages.projectName'>
+        <span *ngIf="removeProjectForm.controls.projectName.invalid && removeProjectForm.controls.projectName.dirty && !!errorMessages.projectName"
+          class='input__error'>
+          {{errorMessages.projectName}}
+        </span>
+      </div>
+      <button class='btn btn__submit' type='submit' [disabled]='formState === 1'>Remove</button>
+      <span *ngIf="formState === 3" class='input__error'>
+        There is conection error. Please try again a bit later.
+      </span>
+    </form>
+  </app-form>
+</div>

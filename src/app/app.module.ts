@@ -7,6 +7,10 @@ import { RoutingModule } from './routing/routing.module';
 import { PublicModule } from './public/public.module';
 import { PrivateModule } from './private/private.module';
 import { httpInterceptorProviders } from './services/http-interceptors';
+import { ProjectsModule } from './projects/projects.module';
+import { PingersModule } from './pingers/pingers.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,10 @@ import { httpInterceptorProviders } from './services/http-interceptors';
     HttpClientModule,
     RoutingModule,
     PublicModule,
-    PrivateModule
+    PrivateModule,
+    ProjectsModule,
+    PingersModule,
+    ServiceWorkerModule.register('sw-index.js', { enabled: environment.production })
   ],
   providers: [
     httpInterceptorProviders

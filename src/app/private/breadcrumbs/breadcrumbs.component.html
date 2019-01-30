@@ -1,0 +1,6 @@
+<ul class='breadcrumbs'>
+  <li class='breadcrubms__item regularText' *ngFor='let link of breadcrumbs; let i = index'>
+    <i class="fas fa-long-arrow-alt-right breadcrumbs__arrow" *ngIf='i !== 0'></i>
+    <a class='breadcrumbs__link' [class.breadcrumbs__link--active]='i === breadcrumbs.length - 1' routerLink={{link.path}}>{{link.label}}</a>
+  </li>
+</ul>

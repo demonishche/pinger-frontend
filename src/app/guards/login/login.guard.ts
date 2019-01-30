@@ -25,7 +25,7 @@ export class LoginGuard implements CanActivate {
           console.log('Login guard: ', !isLogged);
           resolve(!isLogged);
           if (isLogged)
-            this.router.navigateByUrl('/cabinet');
+            this.router.navigateByUrl('/projects');
         });
     });
   }

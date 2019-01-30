@@ -1,0 +1,31 @@
+<div class='editWebsite__block'>
+  <p class='title title--size-m'>Edit website</p>
+  <p class='regularText regularText--size-l regularText__success' *ngIf="formState === 2">Website successfully updated!</p>
+  <app-form *ngIf="formState !== 2" [form]='editWebsiteForm' [fields]='fields' [globalErrors]='globalErrors' [errorMessages]='errorMessages'
+    #editWebsiteFormComponent>
+    <form class='editWebsiteForm' [formGroup]="editWebsiteForm" novalidate (ngSubmit)='submit()'>
+      <div class='inputBlock'>
+        <label class='inputLabel' for='websiteName'>Website name:</label>
+        <input type='text' id='websiteName' name='websiteName' class='input' formControlName='websiteName' maxlength='255'
+          [class.input--errored]='editWebsiteForm.controls.websiteName.invalid && editWebsiteForm.controls.websiteName.dirty && !!errorMessages.websiteName'>
+        <span *ngIf="editWebsiteForm.controls.websiteName.invalid && editWebsiteForm.controls.websiteName.dirty && !!errorMessages.websiteName"
+          class='input__error'>
+          {{errorMessages.websiteName}}
+        </span>
+      </div>
+      <div class='inputBlock'>
+        <label class='inputLabel' for='pingerUrl'>Website url:</label>
+        <input type='text' id='pingerUrl' name='pingerUrl' class='input' formControlName='pingerUrl' maxlength='255'
+          [class.input--errored]='editWebsiteForm.controls.pingerUrl.invalid && editWebsiteForm.controls.pingerUrl.dirty && !!errorMessages.pingerUrl'>
+        <span *ngIf="editWebsiteForm.controls.pingerUrl.invalid && editWebsiteForm.controls.pingerUrl.dirty && !!errorMessages.pingerUrl"
+          class='input__error'>
+          {{errorMessages.pingerUrl}}
+        </span>
+      </div>
+      <button class='btn btn__submit' type='submit' [disabled]='formState === 1'>Edit</button>
+      <span *ngIf="formState === 3" class='input__error'>
+          There is conection error. Please try again a bit later.
+      </span>
+    </form>
+  </app-form>
+</div>

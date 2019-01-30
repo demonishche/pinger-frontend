@@ -1,10 +1,10 @@
 <div class='content'>
   <div class='actionsBar'>
-    <button class='btn' (click)='showNewWebsiteModal()'>Add new website</button>
+    <button class='btn' (click)='showNewWebsiteModal()'>Add new page</button>
     <i (click)='refreshData()' class="refreshIcon fas fa-sync-alt"></i>
   </div>
   <div class='pingersList'>
-    <table class='pingerTable'>
+    <table class='pingerTable table'>
       <thead>
         <tr>
           <th class='pingerStatus--header'></th>
@@ -34,6 +34,7 @@
           </td>
           <td class='regularText regularText--size-lg downPercent__value statisticValue'>
             {{pinger.down_percent}}
+            <a *ngIf='pinger.down_count !== 0' [routerLink]='"/projects/" + project.short_id + "/" + pinger.short_id' class='showError__link'>Errors list</a>
           </td>
           <td class='regularText regularText--size-lg statisticValue'>
             {{pinger.status === 1 ? pinger.up_period : '---'}}
@@ -55,12 +56,18 @@
 <div class='modalContainer' [class.modalContainer--visible]='newWebsiteModalVisibility' (click)='closeNewWebsiteModal($event)'>
   <div class='modalPanel newWebsite__modal'>
     <i class="modalClose__icon fas fa-times" (click)='closeNewWebsiteModal($event, true)'></i>
-    <app-new-website></app-new-website>
+    <app-new-website #newWebsiteForm></app-new-website>
   </div>
 </div>
 <div class='modalContainer' [class.modalContainer--visible]='removeWebsiteModalVisibility' (click)='closeRemoveWebsiteModal($event)'>
   <div class='modalPanel removeWebsite__modal'>
     <i class="modalClose__icon fas fa-times" (click)='closeRemoveWebsiteModal($event, true)'></i>
     <app-remove-website #removeWebsiteForm></app-remove-website>
+  </div>
+</div>
+<div class='modalContainer' [class.modalContainer--visible]='editWebsiteModalVisibility' (click)='closeEditWebsiteModal($event)'>
+  <div class='modalPanel editWebsite__modal'>
+    <i class="modalClose__icon fas fa-times" (click)='closeEditWebsiteModal($event, true)'></i>
+    <app-edit-website #editWebsiteForm></app-edit-website>
   </div>
 </div>
