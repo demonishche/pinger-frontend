@@ -12,12 +12,11 @@
           <th class='title title--size-s'>Pages Up</th>
           <th class='title title--size-s'>Pages Down</th>
           <th class='title title--size-s'>Pages Paused</th>
-          <th class='title title--size-s'>Avg response time (ms)</th>
-          <th class='title title--size-s'></th>
+          <th class='title title--size-s' colspan='2'>Avg response time (ms)</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor='let project of projects'>
+        <tr *ngFor='let project of projects' class='project__row' routerLink='{{"/projects/" + project.short_id}}'>
           <td class='title__cell'>
             <p class='title title--size-s'>{{project.name}}</p>
             <div class='project__url url'>
@@ -45,12 +44,54 @@
           <td>
             <!-- <i *ngIf='pinger.status === 3' (click)='startPinger(pinger.id)' class="actionIcon startPinger fas fa-play"></i>
             <i *ngIf='pinger.status !== 3' (click)='pausePinger(pinger.id)' class="actionIcon pausePinger fas fa-pause"></i> -->
-            <i (click)='editProject(project.id, project.name, project.origin)' class="actionIcon editProject far fa-edit"></i>
-            <i (click)='removeProject(project.id, project.name)' class="actionIcon removeProject far fa-trash-alt"></i>
+            <i (click)='editProject($event, project.id, project.name, project.origin)' class="actionIcon editProject far fa-edit"></i>
+            <i (click)='removeProject($event, project.id, project.name)' class="actionIcon removeProject far fa-trash-alt"></i>
           </td>
         </tr>
       </tbody>
     </table>
+    <div class='projects__list--mobile'>
+      <div class='project project__card' *ngFor='let project of projects' routerLink='{{"/projects/" + project.short_id}}'>
+        <div class='project__title'>
+          <div class='project__titleLeft'>
+            <p class='title title--size-s'>{{project.name}}</p>
+            <div class='project__url url'>
+              <p class='regularText regularText--size-s url__text'>{{project.origin}}</p>
+              <a class='url__link' href='{{project.origin}}' target='_blank'>
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class='project__titleRight' (click)='toggleCard($event)'>
+            <i class="fas fa-chevron-down toggleCard__icon"></i>
+          </div>
+        </div>
+        <div class='card__row project__pagesCount'>
+          <p class='title title--size-xs'>Pages count: </p>
+          <p class='regularText'>{{project.count}}</p>
+        </div>
+        <div class='card__row project__pagesActive'>
+          <p class='title title--size-xs'>Pages Up:</p>
+          <p class='regularText'>{{project.active}}</p>
+        </div>
+        <div class='card__row project__pagesDown'>
+          <p class='title title--size-xs'>Pages Down:</p>
+          <p class='regularText'>{{project.down}}</p>
+        </div>
+        <div class='card__row project__pagesPaused'>
+          <p class='title title--size-xs'>Pages Paused:</p>
+          <p class='regularText'>{{project.paused}}</p>
+        </div>
+        <div class='card__row project__pagesAvgTime'>
+          <p class='title title--size-xs'>Avg response time (ms):</p>
+          <p class='regularText'>{{project.avgTime}}</p>
+        </div>
+        <div class='card__row project__actions'>
+          <i (click)='editProject(project.id, project.name, project.origin)' class="actionIcon editProject far fa-edit"></i>
+          <i (click)='removeProject(project.id, project.name)' class="actionIcon removeProject far fa-trash-alt"></i>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class='modalContainer' [class.modalContainer--visible]='newProjectModalVisibility' (click)='closeNewProjectModal($event)'>

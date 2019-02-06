@@ -16,11 +16,22 @@
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0 40px;
+
+  @media screen and (max-width: 840px) {
+    padding: 0 15px;
+    height: 60px;
+  }
 }
 
 .userInfo {
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 840px) {
+    .username {
+      font-size: 16px;
+    }
+  }
 }
 
 .logout {
@@ -38,12 +49,20 @@
       color: $borderSelected;
     }
   }
+
+  @media screen and (max-width: 840px) {
+    margin-left: 10px;
+  }
 }
 
 .title--logo {
   color: rgba(227, 244, 255, 0.9);
   font-size: 40px;
   letter-spacing: 8px;
+
+  @media screen and (max-width: 840px) {
+    font-size: 30px;
+  }
 }
 
 .pageRow {
@@ -111,4 +130,8 @@
   box-sizing: border-box;
   overflow: auto;
   overflow-x: hidden;
+
+  @media screen and (max-width: 840px) {
+    padding: 15px;
+  }
 }

@@ -25,7 +25,7 @@ export class ProjectsListComponent implements OnInit {
 
   public showNewProjectModal(): void {
     this.newProjectModalVisibility = true;
-    this.projectsService.newProjectState.next({state:requestState.CREATING});
+    this.projectsService.newProjectState.next({ state: requestState.CREATING });
   }
 
   public closeNewProjectModal(event, close = false): void {
@@ -34,14 +34,16 @@ export class ProjectsListComponent implements OnInit {
     }
   }
 
-  public removeProject(project_id: string, name: string): void {
+  public removeProject(event, project_id: string, name: string): void {
+    event.stopPropagation();
+
     this.removeProjectFormComponent.setProjectInfo(project_id, name);
     this.showRemoveProjectModal();
   }
 
   public showRemoveProjectModal(): void {
     this.removeProjectModalVisibility = true;
-    this.projectsService.removeProjectState.next({state:requestState.CREATING});
+    this.projectsService.removeProjectState.next({ state: requestState.CREATING });
   }
 
   public closeRemoveProjectModal(event, close = false): void {
@@ -50,19 +52,29 @@ export class ProjectsListComponent implements OnInit {
     }
   }
 
-  public editProject(project_id: string, name: string, origin: string): void {
+  public editProject(event, project_id: string, name: string, origin: string): void {
+    event.stopPropagation();
+
     this.editProjectFormComponent.setProjectInfo(project_id, name, origin);
     this.showEditProjectModal();
   }
 
   public showEditProjectModal(): void {
     this.editProjectModalVisibility = true;
-    this.projectsService.editProjectState.next({state:requestState.CREATING});
+    this.projectsService.editProjectState.next({ state: requestState.CREATING });
   }
 
   public closeEditProjectModal(event, close = false): void {
     if ((!!event && event.target.className.indexOf('modalContainer') !== -1) || close) {
       this.editProjectModalVisibility = false;
     }
+  }
+
+  public toggleCard(event) {
+    event.stopPropagation();
+
+    const card = event.path.find(item => item.classList && item.classList.contains('project__card'));
+
+    card.classList.toggle('project__card--opened')
   }
 }
